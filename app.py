@@ -8,7 +8,7 @@ app = Flask(__name__)
 # @ signifies a decorator which is a way to wrap a function and modify its behaviour
 @app.route("/") # Connect to webpage. "/" is a root directory
 def main():
-    return render_template('index.html')
+    return render_template("index.html")
 
  
 if __name__ == "__main__":
