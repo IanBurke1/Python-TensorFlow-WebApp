@@ -3,13 +3,13 @@ from flask import Flask, flash, render_template, request, redirect, url_for, sen
 from werkzeug.utils import secure_filename
 # Import flask 
 
+# UPLOAD_FOLDER is where we will store the uploaded files
 UPLOAD_FOLDER = '/path/to/the/uploads'
-ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif']) # set of allowed file extensions.
 
 # Pass in __name__ to help flask determine root path
 app = Flask(__name__)
-
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 
 def allowed_file(filename):
     return '.' in filename and \
