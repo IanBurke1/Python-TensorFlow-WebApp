@@ -8,7 +8,7 @@ UPLOAD_FOLDER = '/path/to/the/uploads'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif']) # set of allowed file extensions.
 
 # Pass in __name__ to help flask determine root path
-app = Flask(__name__)
+app = Flask(__name__) # Initialising flask app
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 
 def allowed_file(filename):
@@ -47,4 +47,4 @@ def uploaded_file(filename):
                                filename)
 
 if __name__ == "__main__":
-    app.run() # Start the web server
+    app.run(debug=True) # Start the web server. debug=True means to auto refresh page after code changes 
