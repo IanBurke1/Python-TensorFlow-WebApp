@@ -51,11 +51,13 @@ model.add(Activation('softmax'))
 model.compile(optimizer="adam",
                 loss="categorical_crossentropy",
                 metrics=["accuracy"])
-                
+
 # Train the model
+model.fit(x_train, y_train, batch_size=128, epochs=4, verbose=1)
 
 # Test the model
- 
+loss, accuracy = model.evaluate(x_test, y_test, verbose=0)
+
 # Prediction
 
 
