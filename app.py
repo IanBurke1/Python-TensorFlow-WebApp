@@ -2,6 +2,8 @@ import os
 from flask import Flask, flash, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
+# Adapted from: http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
+
 # UPLOAD_FOLDER is where we will store the uploaded files
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif']) # set of allowed file extensions.
