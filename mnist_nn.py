@@ -26,8 +26,8 @@ x_test = x_test.astype('float32')
 x_train /= 255
 x_test /= 255
 
-print("Training matrix shape", x_train.shape)
-rint("Testing matrix shape", x_test.shape)
+#print("Training matrix shape", x_train.shape)
+#print("Testing matrix shape", x_test.shape)
 
 # Convert the data to binary matrices
 y_train = kr.utils.to_categorical(y_train, num_classes=10)
@@ -37,6 +37,21 @@ y_test = kr.utils.to_categorical(y_test, num_classes=10)
 # Create our model
 model = Sequential()
 
+model.add(Dense(512, input_shape=(784,)))
+model.add(Activation('relu'))
+
+model.add(Dropout(0.2))
+model.add(Dense(512))
+model.add(Activation('relu'))
+model.add(Dropout(0.2))
+model.add(Dense(10))
+model.add(Activation('softmax'))
+
+
+model.compile(optimizer="adam",
+                loss="categorical_crossentropy",
+                metrics=["accuracy"])
+                
 # Train the model
 
 # Test the model
