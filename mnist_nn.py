@@ -58,8 +58,17 @@ model.fit(x_train, y_train, batch_size=128, epochs=4, verbose=1)
 # Test the model
 loss, accuracy = model.evaluate(x_test, y_test, verbose=0)
 
-# Prediction
+# Output the accuracy of the model.
+print("\n\nLoss: %6.4f\tAccuracy: %6.4f" % (loss, accuracy))
 
+# Prediction
+prediction = np.around(model.predict(np.expand_dims(x_test[0], axis=0))).astype(np.int)[0]
+
+# Check which items we got right / wrong
+#correct_indices = np.nonzero(prediction == y_test)[0]
+#incorrect_indices = np.nonzero(prediction != y_test)[0]
+
+print("Actual: %s\tEstimated: %s" % (y_test[0].astype(np.int), prediction))
 
 # Save the model 
 # h5 is the file format for keras
