@@ -21,43 +21,46 @@
         <a class="navbar-brand navbar-link " href="/">Digit Recognition</a>
     </nav>
 
-    <main role="main" class="container">
+    <div class="container">
       <div class="starter-template">
-        <h1>Upload Digit Image</h1>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-          <label class="custom-file">
-            <input type="file" name="file" class="custom-file-input">
-            <span class="custom-file-control"></span>
-          </label>
-        
-          <div>
-            <button class="btn btn-primary" type="submit">Upload file</button>
-          </div>
-        </form>
-        
-
-        <div>
-          <canvas id="canvas" height="280" width="280" style="border:8px solid" ></canvas>
-        </div>
-        <div>
-          <input type="button" class="myButton" value="Predict" style="">
-          <input type="button" id="clearButton" value="Clear" style="">
-        </div>
-    
-        <div>
-          <h1 id="result"></h1>
-        </div>
-        
+          <h1>Upload Digit Image</h1>
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label class="custom-file">
+              <input type="file" name="file" class="custom-file-input">
+              <span class="custom-file-control"></span>
+            </label>
+            <div>
+              <button class="btn btn-primary" type="submit">Upload file</button>
+            </div>
+          </form>
       </div>
-     
-
-
-    </main><!-- /.container -->
-
-
+          <div class="starter-template">
+              <h2>Or</h2>
+          </div>
+          
+  
+          <div class="starter-template">
+            <h2>Draw a digit</h2>
+            <div>
+              <canvas id="canvas" height="280" width="280" style="border:8px solid" ></canvas>
+            </div>
+          <div>
+            
+            <input type="button" class="myButton" value="Predict" style="">
+            <input type="button" id="clearButton" value="Clear" style="">
+          </div>
     
-    <img class="rounded">
+          <div>
+            <h1 id="result"></h1>
+          </div>
+          </div>
+        
+    </div><!-- /.container --> 
+        
 
+    <!--
+    <img class="rounded">
+    -->
       
 
     <!-- Optional JavaScript -->
