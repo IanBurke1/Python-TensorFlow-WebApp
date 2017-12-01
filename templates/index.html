@@ -11,6 +11,7 @@
 
     <!-- Bootstrap style template -->
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='starter-template.css') }}>
+
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -33,30 +34,52 @@
             <button class="btn btn-primary" type="submit">Upload file</button>
           </div>
         </form>
+        
 
+        <div>
+          <canvas id="canvas" height="280" width="280" style="border:8px solid" ></canvas>
+        </div>
+        <div>
+          <input type="button" class="myButton" value="Predict" style="">
+          <input type="button" id="clearButton" value="Clear" style="">
+        </div>
+    
+        <div>
+          <h1 id="result"></h1>
+        </div>
         
       </div>
      
 
+
     </main><!-- /.container -->
 
-    <img action="/upload" method="GET" src="{{ url_for('uploaded_file', filename=filename) }}" class="rounded">
 
-    <div>
-      <h1 id="result"><span> </span></h1>
-    </div>
+    
+    <img class="rounded">
 
       
 
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     
-    <script type="text/javascript">
-   
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="{{url_for('static',filename='index.js')}}"></script>
+    <script type="text/javascript">   
+       $(".myButton").click(function(){
+         $('#result').text('  Predicting...');
+         var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+         var canvasObj = document.getElementById("canvas");
+         var img = canvasObj.toDataURL('image/png');
+         $.ajax({
+           type: "POST",
+           url: $SCRIPT_ROOT + "/predict/",
+           data: img,
+           success: function(data){
+             $('#result').text('Predicted Output: ' + data);
+           }
+         });
+       });
+   </script>
   
   </body>
 </html>
