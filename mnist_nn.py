@@ -72,3 +72,4 @@ print("Actual: %s\tEstimated: %s" % (y_test[0].astype(np.int), prediction))
 
 # Save the model 
 # h5 is the file format for keras
+model.save("mnistModel.h5")

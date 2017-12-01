@@ -11,6 +11,8 @@ from scipy.misc import imread, imresize
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif']) # set of allowed file extensions.
 
+model, graph = load()
+
 # Pass in __name__ to help flask determine root path
 app = Flask(__name__) # Initialising flask app
 
