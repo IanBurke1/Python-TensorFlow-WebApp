@@ -1,6 +1,9 @@
 import os
 from flask import Flask, flash, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
+from load import *
+from skimage import color
+from scipy.misc import imread, imresize
 
 # Adapted from: http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
 
@@ -17,9 +20,9 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @app.route('/') #connect a webpage. '/' is a root directory.
 def main():
-
    return render_template("index.html")
 
 # Routing/Mapping
@@ -40,8 +43,13 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename) # secure a filename before storing it directly
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            img = color.rgb2gray(imread(filename, mode='L')) # change colour to greyscale
+            img = imresize(img, (28,28)) # resize the image 
+            img = img.reshape(1, 28, 28, 1) # Reshape the image
+
             return redirect(url_for('uploaded_file',
                                     filename=filename))
+    
     return render_template('index.html')
 
 @app.route('/uploads/<filename>')
