@@ -5,11 +5,18 @@ from keras.layers.core import Dense, Dropout, Activation
 from keras.utils import np_utils
 import numpy as np
 import matplotlib.pyplot as plt
-
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
 #
 # Adapted from: https://github.com/wxs/keras-mnist-tutorial/blob/master/MNIST%20in%20Keras.ipynb
 #
 
+num_classes = 10
+
+# input image dimensions
+#28x28 pixel images. 
+img_rows, img_cols = 28, 28
 
 # Load the MNIST dataset from keras.datasets -> Dataset of 60,000 28x28 grayscale images of 10 digits & test set of 10,000 images
 # 2 tuples ( immutable data structure/lists consisting of mulitple parts):
@@ -18,9 +25,20 @@ import matplotlib.pyplot as plt
 # Adapted from: https://keras.io/datasets/
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
+
+#this assumes our data format
+#For 3D data, "channels_last" assumes (conv_dim1, conv_dim2, conv_dim3, channels) while 
+#"channels_first" assumes (channels, conv_dim1, conv_dim2, conv_dim3).
+if K.image_data_format() == 'channels_first':
+    x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols)
+    x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
+    input_shape = (1, img_rows, img_cols)
+else:
+    x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
+    x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
+input_shape = (img_rows, img_cols, 1)
+
 # Format/reshape the data for training
-x_train = x_train.reshape(60000, 784)
-x_test = x_test.reshape(10000, 784)
 x_train = x_train.astype('float32')
 x_test = x_test.astype('float32')
 x_train /= 255
@@ -30,22 +48,28 @@ x_test /= 255
 #print("Testing matrix shape", x_test.shape)
 
 # Convert the data to binary matrices
-y_train = kr.utils.to_categorical(y_train, num_classes=10)
-y_test = kr.utils.to_categorical(y_test, num_classes=10)
+y_train = kr.utils.to_categorical(y_train, num_classes)
+y_test = kr.utils.to_categorical(y_test, num_classes)
 
 
 # Create our model
 model = Sequential()
 
-model.add(Dense(512, input_shape=(784,)))
-model.add(Activation('relu'))
-
-model.add(Dropout(0.2))
-model.add(Dense(512))
-model.add(Activation('relu'))
-model.add(Dropout(0.2))
-model.add(Dense(10))
-model.add(Activation('softmax'))
+model.add(Conv2D(128, kernel_size=(3, 3),
+                 activation='relu',
+                 kernel_initializer='he_normal',
+                 input_shape=input_shape))
+model.add(MaxPooling2D((2, 2)))
+model.add(Dropout(0.5))
+model.add(Conv2D(128, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+model.add(Conv2D(128, (3, 3), activation='relu'))
+model.add(Dropout(0.5))
+model.add(Flatten())
+model.add(Dense(256, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes, activation='softmax'))
 
 
 model.compile(optimizer="adam",

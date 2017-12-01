@@ -72,7 +72,7 @@
          var img = canvasObj.toDataURL('image/png');
          $.ajax({
            type: "POST",
-           url: $SCRIPT_ROOT + "/predict/",
+           url: $SCRIPT_ROOT + "/predict",
            data: img,
            success: function(data){
              $('#result').text('Predicted Output: ' + data);
