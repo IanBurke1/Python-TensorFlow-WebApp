@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from load import *
 from skimage import color
 from scipy.misc import imread, imresize
+import numpy as np
 
 # Adapted from: http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
 
@@ -11,7 +12,7 @@ from scipy.misc import imread, imresize
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif']) # set of allowed file extensions.
 
-model, graph = load()
+model, graph = loadModel()
 
 # Pass in __name__ to help flask determine root path
 app = Flask(__name__) # Initialising flask app
@@ -45,14 +46,19 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename) # secure a filename before storing it directly
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            img = color.rgb2gray(imread(filename, mode='L')) # change colour to greyscale
-            img = imresize(img, (28,28)) # resize the image 
-            img = img.reshape(1, 28, 28, 1) # Reshape the image
-
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+           # img = color.rgb2gray(imread(filename, mode='L')) # change colour to greyscale
+           #  img = imresize(img, (28,28)) # resize the image 
+           # img = img.reshape(1, 28, 28, 1) # Reshape the image
+           # with graph.as_default():
+            #    out = model.predict(img)
+             #   print(out)
+              #  print(np.argmax(out, axis=1))
+               # response = np.array_str(np.argmax(out, axis=1))
+                #return response
+           
+            return redirect(url_for('uploaded_file', filename=filename))
     
-    return render_template('index.html')
+   # return render_template('index.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
