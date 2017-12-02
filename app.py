@@ -5,7 +5,7 @@ from load import *
 from skimage import color # change colour of image
 from scipy.misc import imread, imresize, imsave # For images
 import numpy as np # martix math
-import re #regular expression for canvas img string data
+import re #regular expression used for canvas img string data
 import base64 # Encode canvas data bytes
 
 # Upload files code adapted from: http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
@@ -70,37 +70,38 @@ def upload_file():
 
 # ============== Canvas Image ========================
 
-def convertData(imgData):
-    # parse canvas bytes and save as output.png
-    # base64 is used to take binary data and turn it into text to easily transmit from html
-    imgstr = re.search(b'base64,(.*)', imgData).group(1)
-    with open('output.png','wb') as output:
-        output.write(base64.decodebytes(imgstr))
-
-# Canvas Digit Image
+# Canvas Digit Image 
 @app.route('/predict',methods=['GET','POST'])
 def predict():
-        #Get data from canvas and save as image
-        convertData(request.get_data())
-        # read parsed image back in mode L = 8-bit pixels, black and white.
-        img = imread('output.png',mode='L')
-        # compute a bit-wise inversion
-        img = np.invert(img)
-        # make it 28x28
-        img = imresize(img,(28,28))
-        
-        #convert to a 4D tensor to feed into our neural network model
-        img = img.reshape(1,28,28,1)
-        
-        #in our computation graph
-        with graph.as_default():
-            # predict the digit using our model
-            prediction = model.predict(img)
-            print(prediction)
-            print(np.argmax(prediction,axis=1))
-            #convert the response to a string
-            response = np.array_str(np.argmax(prediction,axis=1))
-            return response 
+    # Get data from canvas
+    imgData = request.get_data()
+    # base64 is used to take binary data and turn it into text to easily transmit from html,
+    # using regular expression
+    # Adapted from: https://github.com/llSourcell/how_to_deploy_a_keras_model_to_production/blob/master/app.py
+    imgstr = re.search(b'base64,(.*)', imgData).group(1)
+    # Create/open file and write in the encoded data then decode it to form the image
+    with open('output.png','wb') as output:
+        output.write(base64.decodebytes(imgstr))
+    
+    # read parsed image back in mode L = 8-bit pixels, black and white.
+    img = imread('output.png',mode='L')
+    # compute a bit-wise inversion
+    img = np.invert(img)
+    # make it 28x28
+    img = imresize(img,(28,28))
+    
+    #convert to a 4D tensor to feed into our neural network model
+    img = img.reshape(1,28,28,1)
+    
+    #in our computation graph
+    with graph.as_default():
+        # predict the digit using our model
+        prediction = model.predict(img)
+        print(prediction)
+        print(np.argmax(prediction,axis=1))
+        #convert the response to a string
+        response = np.array_str(np.argmax(prediction,axis=1))
+        return response 
 
 
 if __name__ == "__main__":
