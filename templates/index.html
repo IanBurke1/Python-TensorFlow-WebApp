@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>Digit Recognition App</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,52 +12,52 @@
     <!-- Bootstrap style template -->
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='starter-template.css') }}>
 
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand navbar-link " href="/">Digit Recognition</a>
-    </nav>
-
+</head>
+<body>
+  <!-- NAVAGATION BAR -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand navbar-link " href="/">Digit Recognition</a>
+  </nav>
+  <!-- CONTENT -->
     <div class="container">
-      <div class="starter-template">
-          <h1>Upload Digit Image</h1>
-          <form action="/upload" method="POST" enctype="multipart/form-data">
-            <label class="custom-file">
-              <input type="file" name="file" class="custom-file-input">
-              <span class="custom-file-control"></span>
-            </label>
-            <div>
-              <button class="btn btn-primary" type="submit">Upload file</button>
-            </div>
-          </form>
-      </div>
-          <div class="starter-template">
-              <h2>Or</h2>
-          </div>
-          
-  
-          <div class="starter-template">
-            <h2>Draw a digit</h2>
-            <div>
-              <canvas id="canvas" height="280" width="280" style="border:8px solid" ></canvas>
-            </div>
-          <div>
-            
-            <input type="button" class="myButton" value="Predict" style="">
-            <input type="button" id="clearButton" value="Clear" style="">
-          </div>
-    
-          <div>
-            <h1 id="result"></h1>
-          </div>
-          </div>
-        
-    </div><!-- /.container --> 
-        
+      <div class="left">
+        <div>
+          <h1>Draw a digit</h1>
+          <canvas id="canvas" height="280" width="280" style="border:4px solid" ></canvas>
+        </div>
+      
+        <div>
+          <input type="button" class="myButton" value="Predict" style="">
+          <input type="button" id="clearButton" value="Clear" style="">
+        </div>
 
+        <div>
+          <h1 id="result"></h1>
+        </div>
+      
+      </div>    
+          
+
+            
+            <!--
+              <h1>Upload Digit Image</h1>
+              <form action="/upload" method="POST" enctype="multipart/form-data">
+                <label class="custom-file">
+                  <input type="file" name="file" class="custom-file-input">
+                  <span class="custom-file-control"></span>
+                </label>
+                <div>
+                  <button class="btn btn-primary" type="submit">Upload file</button>
+                </div>
+              </form>
+            -->
+  
+      
+        
+    </div>
     <!--
     <img class="rounded">
     -->
