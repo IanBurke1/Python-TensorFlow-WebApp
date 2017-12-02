@@ -94,11 +94,12 @@ prediction = np.around(model.predict(np.expand_dims(x_test[0], axis=0))).astype(
 
 print("Actual: %s\tEstimated: %s" % (y_test[0].astype(np.int), prediction))
 
+# Json file used to save structure of model 
 # parse/serialise model to json format
 model_json = model.to_json()
 with open("mnistModel.json", "w") as json_file:
     json_file.write(model_json)
 
 # Save the model 
-# h5 is the file format for keras
-model.save("model/mnistModel.h5")
+# h5 is the file format for keras to save the weights of model
+model.save("mnistModel.h5")

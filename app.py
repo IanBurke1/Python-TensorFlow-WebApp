@@ -1,12 +1,12 @@
 from flask import Flask, flash, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename 
-import os
-from load import * 
+import os, sys
 from skimage import color # change colour of image
 from scipy.misc import imread, imresize, imsave # For images
 import numpy as np # martix math
 import re #regular expression used for canvas img string data
 import base64 # Encode canvas data bytes
+import keras.models as km 
 
 # Upload files code adapted from: http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
 # Canvas image code adapted from: https://github.com/llSourcell/how_to_deploy_a_keras_model_to_production/blob/master/app.py
@@ -18,6 +18,8 @@ UPLOAD_FOLDER = './static/uploads'
 # set of allowed file extensions.
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif']) 
 
+#sys.path.append(os.path.abspath("./model")) # absolute path to model folder
+from load import * 
 # model and graph from load.py
 model, graph = loadModel()
 
@@ -95,10 +97,13 @@ def predict():
     
     #in our computation graph
     with graph.as_default():
+
         # predict the digit using our model
+        #model = km.load_model('mnistModel.h5')
+        # feed the image into the model and get our prediction
         prediction = model.predict(img)
-        print(prediction)
-        print(np.argmax(prediction,axis=1))
+        #print(prediction)
+        #print(np.argmax(prediction,axis=1))
         #convert the response to a string
         response = np.array_str(np.argmax(prediction,axis=1))
         return response 
