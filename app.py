@@ -1,12 +1,13 @@
 from flask import Flask, flash, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename 
-import os, sys
+import os
 from skimage import color # change colour of image
 from scipy.misc import imread, imresize, imsave # For images
 import numpy as np # martix math
 import re #regular expression used for canvas img string data
 import base64 # Encode canvas data bytes
 import keras.models as km 
+from keras.models import model_from_json
 
 # Upload files code adapted from: http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
 # Canvas image code adapted from: https://github.com/llSourcell/how_to_deploy_a_keras_model_to_production/blob/master/app.py
@@ -17,11 +18,6 @@ import keras.models as km
 UPLOAD_FOLDER = './static/uploads'
 # set of allowed file extensions.
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif']) 
-
-#sys.path.append(os.path.abspath("./model")) # absolute path to model folder
-from load import * 
-# model and graph from load.py
-model, graph = loadModel()
 
 # Pass in __name__ to help flask determine root path
 app = Flask(__name__) # Initialising flask app
@@ -95,18 +91,25 @@ def predict():
     #convert to a 4D tensor to feed into our neural network model
     img = img.reshape(1,28,28,1)
     
-    #in our computation graph
-    with graph.as_default():
+    # call our pre loaded graph from load.py
+    #with graph.as_default():
+    json_file = open('mnistModel.json','r') # open json file
+    model_json = json_file.read() # read the model structure
+    json_file.close() # close when done
+    # 
+    model = model_from_json(model_json)
+    # predict the digit using our model
+    model.load_weights('mnistModel.h5')
+    #model = km.load_model()
+    # feed the image into the model and get our prediction
+    prediction = model.predict(img)
+    #print(prediction)
+    #print(np.argmax(prediction,axis=1))
+    #convert the response to a string
+    response = np.array_str(np.argmax(prediction,axis=1))
+    return response 
 
-        # predict the digit using our model
-        #model = km.load_model('mnistModel.h5')
-        # feed the image into the model and get our prediction
-        prediction = model.predict(img)
-        #print(prediction)
-        #print(np.argmax(prediction,axis=1))
-        #convert the response to a string
-        response = np.array_str(np.argmax(prediction,axis=1))
-        return response 
+
 
 
 if __name__ == "__main__":
