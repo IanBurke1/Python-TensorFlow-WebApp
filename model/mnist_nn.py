@@ -101,4 +101,4 @@ with open("mnistModel.json", "w") as json_file:
 
 # Save the model 
 # h5 is the file format for keras
-model.save("mnistModel.h5")
+model.save("model/mnistModel.h5")

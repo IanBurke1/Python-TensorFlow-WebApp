@@ -83,19 +83,19 @@ def predict():
         #Get data from canvas and save as image
         convertData(request.get_data())
         # read parsed image back in mode L = 8-bit pixels, black and white.
-        x = imread('output.png',mode='L')
+        img = imread('output.png',mode='L')
         # compute a bit-wise inversion
-        x = np.invert(x)
+        img = np.invert(img)
         # make it 28x28
-        x = imresize(x,(28,28))
+        img = imresize(img,(28,28))
         
         #convert to a 4D tensor to feed into our neural network model
-        x = x.reshape(1,28,28,1)
+        img = img.reshape(1,28,28,1)
         
         #in our computation graph
         with graph.as_default():
             # predict the digit using our model
-            prediction = model.predict(x)
+            prediction = model.predict(img)
             print(prediction)
             print(np.argmax(prediction,axis=1))
             #convert the response to a string
