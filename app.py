@@ -93,13 +93,13 @@ def predict():
     
     # call our pre loaded graph from load.py
     #with graph.as_default():
-    json_file = open('mnistModel.json','r') # open json file
+    json_file = open('./model/mnistModel.json','r') # open json file
     model_json = json_file.read() # read the model structure
     json_file.close() # close when done
     # 
     model = model_from_json(model_json)
     # predict the digit using our model
-    model.load_weights('mnistModel.h5')
+    model.load_weights('./model/mnistModel.h5')
     #model = km.load_model()
     # feed the image into the model and get our prediction
     prediction = model.predict(img)
