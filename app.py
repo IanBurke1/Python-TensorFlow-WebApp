@@ -78,11 +78,11 @@ def predict():
     # Adapted from: https://github.com/llSourcell/how_to_deploy_a_keras_model_to_production/blob/master/app.py
     imgstr = re.search(b'base64,(.*)', imgData).group(1)
     # Create/open file and write in the encoded data then decode it to form the image
-    with open('output.png','wb') as output:
+    with open('digit.png','wb') as output:
         output.write(base64.decodebytes(imgstr))
     
     # read parsed image back in mode L = 8-bit pixels, black and white.
-    img = imread('output.png',mode='L')
+    img = imread('digit.png',mode='L')
     # compute a bit-wise inversion
     img = np.invert(img)
     # make it 28x28
