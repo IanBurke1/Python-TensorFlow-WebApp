@@ -5,10 +5,11 @@ For my project in [Emerging Technologies](https://emerging-technologies.github.i
 **_For more: [Project Instructions](https://emerging-technologies.github.io/problems/project.html)_**
 
 ## How to run 
-- Click [here](https://github.com/ianburkeixiv/Python-TensorFlow-WebApp/archive/master.zip) to download the zip of the project.
-- Unzip the project.
-- Open a command terminal and enter the following:
-```
+1. Click [here](https://github.com/ianburkeixiv/Python-TensorFlow-WebApp/archive/master.zip) to download the zip of the project.
+2. Unzip the project.
+3. Open a command terminal and enter the following:
+
+```python
 python app.py
 ```
 ## Technologies
