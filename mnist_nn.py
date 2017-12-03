@@ -76,30 +76,28 @@ model = Sequential()
 
 # Using 2D convolution layer. Ref: https://keras.io/layers/convolutional/
 # Declare input layer
-# 128 = the number output of filters in the convolution
+# 32 = the number output of filters in the convolution
 # kernel_size = list of 2 integers, specifying the width and height of the 2D convolution window
 # activation function 'relu' which means rectified linear unit
 # input_shape = (1,28,28) = (depth, width, height)
-model.add(Conv2D(128, kernel_size=(3, 3),
+model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
                  kernel_initializer='he_normal',
                  input_shape=input_shape))
-model.add(MaxPooling2D((2, 2))) # (2,2) = pool_size. (2, 2) will halve the input in both spatial dimension.
+
 # Dropout method for regularizing our model in order to prevent overfitting
-model.add(Dropout(0.5)) # float between 0 and 1. Fraction of the input units to drop.
 # Add another convolution layer
-model.add(Conv2D(128, (3, 3), activation='relu'))
+model.add(Conv2D(64, (3, 3), activation='relu'))
 # MaxPooling2D is a way to reduce the number of parameters in our model.. 
 # by sliding a 2x2 pooling filter across the previous layer and taking the max of the 4 values in the 2x2 filter
 model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
-model.add(Conv2D(128, (3, 3), activation='relu'))
-model.add(Dropout(0.5))
+# Dropout method for regularizing our model in order to prevent overfitting
+model.add(Dropout(0.25)) # float between 0 and 1. Fraction of the input units to drop.
 # Flatten the weights to 1 dimensional before passing to dense layer
 model.add(Flatten())
 # Add dense layer
-# 256 = output size
-model.add(Dense(256, activation='relu'))
+# 128 = output size
+model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(num_classes, activation='softmax'))
 
