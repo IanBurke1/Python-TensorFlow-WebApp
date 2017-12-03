@@ -13,7 +13,7 @@ For my project in [Emerging Technologies](https://emerging-technologies.github.i
 ```python
 python app.py
 ```
-## Technologies
+## Architecture
 
 ## Python 
 [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]()
@@ -36,9 +36,15 @@ The main programming language used in this problem sheet is [Python](https://www
 
 [Keras](https://keras.io/) is as high level neural network API running on top of TensorFlow. Designed to enable fast and easy experimentation with deep neural networks. Keras is more minimal than TensorFlow as it runs seamlessly on CPU and GPU. It allows for fast prototyping due to its user friendliness.
 
-## Design Methodology
+## MNIST Dataset
+[MNIST]( http://yann.lecun.com/exdb/mnist/) is a famous dataset that consists of handwritten digits commonly used for training various image processing systems and also used in machine learning. The dataset contains 60,000 training images and 10,000 testing images. Each image is a 28x28 pixel square (784 pixels in total). A standard split of the dataset is used to evaluate and compare models. Excellent results achieve a prediction error/loss of less than 1% and accuracy of up to 0.99%.
+
+![](https://www.tensorflow.org/images/mnist_digits.png)
+
+
 
 ## Conclusion
+I have implemented a convoltional neural network which has the best loss and accuracy rate of all other machine learning methods
 
 ## References
 [The MNIST Database](http://yann.lecun.com/exdb/mnist/)
