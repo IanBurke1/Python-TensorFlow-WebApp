@@ -7,7 +7,8 @@ For my project in [Emerging Technologies](https://emerging-technologies.github.i
 ## How to run 
 1. Click [here](https://github.com/ianburkeixiv/Python-TensorFlow-WebApp/archive/master.zip) to download the zip of the project.
 2. Unzip the project.
-3. Open a command terminal and enter the following:
+3. Open a command terminal and cd into project directory
+4. Enter the following to run the app:
 
 ```python
 python app.py
