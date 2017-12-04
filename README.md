@@ -41,12 +41,23 @@ The main programming language used in this problem sheet is [Python](https://www
 ### Neural Networks
 In each hemisphere of our brain, humans have a primary visual cortex, also known as V1, containing 140 million neurons, with tens of billions of connections between them. And yet human vision involves not just V1, but an entire series of visual cortices - V2, V3, V4, and V5 - doing progressively more complex image processing. We carry in our heads a supercomputer, tuned by evolution over hundreds of millions of years, and superbly adapted to understand the visual world. Recognizing handwritten digits isn't easy. We humans are astoundingly good at making sense of what our eyes show us. But nearly all that work is done unconsciously. And so we don't usually appreciate how tough a problem our visual systems solve. Adapted from: http://neuralnetworksanddeeplearning.com/chap1.html
 
-**_[Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network)_** is a computational model that is inspired by the way biological neural networks in the human brain process information. Artificial Neural Networks have generated a lot of excitement in Machine Learning research and industry. The basic unit of computation in a neural network is the neuron, often called a node or unit. It receives input from some other nodes, or from an external source and computes an output. Each input has an associated weight (w), which is assigned on the basis of its relative importance to other inputs.
+#### Artificial Neural Networks
+*_[Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network)_* is a computational model that is inspired by the way biological neural networks in the human brain process information. Artificial Neural Networks have generated a lot of excitement in Machine Learning research and industry. The basic unit of computation in a neural network is the neuron, often called a node or unit. It receives input from some other nodes, or from an external source and computes an output. Each input has an associated weight (w), which is assigned on the basis of its relative importance to other inputs.
 
 ![](https://ujwlkarn.files.wordpress.com/2016/08/screen-shot-2016-08-09-at-3-42-21-am.png?w=768&h=410)
 
-### Convultional Neural Network (CNN)
+### Convolutional Neural Network (CNN)
 [Convolutional Neural Networks (CNN)](http://cs231n.github.io/convolutional-networks/) are multi-layer neural networks that have successfully been applied to analyzing visual imagery. The main feature of CNN's is that it can drastically reduce the number of parameters that need to be tuned. This means that CNN's can efficiently handle the high dimensionality of raw images.
+
+Convolutional neural networks are more complex than standard multi-layer perceptrons. In this project, we use 8 layers.
+1. The first hidden layer is a convolutional layer called a Convolution2D. In our model, the layer has 32 filters, which with the size of 3×3 and a rectified linear unit activation function. This is the input layer, expecting images with the structure outline (pixels, width, height). 
+2. We add another covolutional layer with 64 filters.  
+3. Next we define a pooling layer called MaxPooling2D which is a way to reduce the number of parameters in our model. It is configured by sliding a 2x2 pooling filter across the previous layer and taking the max of the 4 values in the 2x2 filter.
+4. The next layer is a regularization layer using dropout called Dropout. It is configured to randomly exclude 25% of neurons in the layer in order to reduce overfitting. 
+5. Next is a layer that converts the 2D matrix data to a vector called Flatten. It allows the output to be processed by standard fully connected layers.
+6. Next a fully connected layer with 128 neurons and rectified linear unit activation function. 
+8. Finally, the output layer has 10 neurons for the 10 classes and a softmax activation function to output probability-like predictions for each class.
+
 
 Video: [![Neural Network 3D Simulation](https://img.youtube.com/vi/https://www.youtube.com/watch?v=3JQ3hYko51Y/0.jpg)](https://www.youtube.com/watch?v=3JQ3hYko51Y)
 
