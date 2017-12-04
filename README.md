@@ -1,6 +1,6 @@
 # A Digit Recognition Web Application
 #### *Emerging Technologies Module - Lecturer: [Dr Ian McLoughlin](ianmcloughlin.github.io) - 4th Year Software Development*
-For my project in [Emerging Technologies](https://emerging-technologies.github.io/), I am required to create a web application in [Python](https://www.python.org/) to recognise digits in images. Users will be able to visit the web application through their browser, submit (or draw) an image containing a single digit, and the web application will respond with the digit contained in the image. [Flask](http://flask.pocoo.org/) will be used to run the web application and [TensorFlow](https://www.tensorflow.org/) will be used to help with the digit recognition.
+For my project in [Emerging Technologies](https://emerging-technologies.github.io/), I am required to create a web application in [Python](https://www.python.org/) to recognise digits in images. Users will be able to visit the web application through their browser, submit (or draw) an image containing a single digit, and the web application will respond with the digit contained in the image. [Flask](http://flask.pocoo.org/) will be used to run the web application and [Keras](https://keras.io/) will be used to help with the digit recognition.
 
 **_For more: [Project Instructions](https://emerging-technologies.github.io/problems/project.html)_**
 
@@ -51,11 +51,9 @@ The main programming language used in this problem sheet is [Python](https://www
 
 ![](https://www.tensorflow.org/images/mnist_digits.png)
 
-
-## Conclusion
-In my keras model, I have implemented a convoltional neural network which has the best loss and accuracy rate of all other machine learning methods known. Using 4 epochs, I have achieved a loss of 0.0324 and an accuracy of 0.9906. I would have achieved a better accuracy if I had increased the number of epochs.  
-
 ## References
-- [The MNIST Database](http://yann.lecun.com/exdb/mnist/)
-- [Tutorial](https://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/)
-- [Keras tutorial](https://elitedatascience.com/keras-tutorial-deep-learning-in-python)
+[The MNIST Database](http://yann.lecun.com/exdb/mnist/)
+
+[CNN Tutorial](https://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/)
+
+[Keras tutorial](https://elitedatascience.com/keras-tutorial-deep-learning-in-python)
