@@ -11,7 +11,9 @@ For my project in [Emerging Technologies](https://emerging-technologies.github.i
 4. Enter the following to run the app:
 
 ```python
+
 python app.py
+
 ```
 ## Architecture
 
