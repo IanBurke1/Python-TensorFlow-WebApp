@@ -38,6 +38,11 @@ The main programming language used in this problem sheet is [Python](https://www
 
 [Keras](https://keras.io/) is as high level neural network API running on top of TensorFlow. Designed to enable fast and easy experimentation with deep neural networks. Keras is more minimal than TensorFlow as it runs seamlessly on CPU and GPU. It allows for fast prototyping due to its user friendliness.
 
+## MNIST Dataset
+[MNIST]( http://yann.lecun.com/exdb/mnist/) is a famous dataset that consists of handwritten digits commonly used for training various image processing systems and also used in machine learning. The dataset contains 60,000 training images and 10,000 testing images. Each image is a 28x28 pixel square (784 pixels in total). A standard split of the dataset is used to evaluate and compare models. Excellent results achieve a prediction error/loss of less than 1% and accuracy of up to 0.99%.
+
+![](https://www.tensorflow.org/images/mnist_digits.png)
+
 ### Neural Networks
 In each hemisphere of our brain, humans have a primary visual cortex, also known as V1, containing 140 million neurons, with tens of billions of connections between them. And yet human vision involves not just V1, but an entire series of visual cortices - V2, V3, V4, and V5 - doing progressively more complex image processing. We carry in our heads a supercomputer, tuned by evolution over hundreds of millions of years, and superbly adapted to understand the visual world. Recognizing handwritten digits isn't easy. We humans are astoundingly good at making sense of what our eyes show us. But nearly all that work is done unconsciously. And so we don't usually appreciate how tough a problem our visual systems solve. Adapted from: http://neuralnetworksanddeeplearning.com/chap1.html
 
@@ -65,10 +70,6 @@ Using flask, we have published a web app that displays a canvas where a user can
 
 Video: [![Neural Network 3D Simulation](https://img.youtube.com/vi/https://www.youtube.com/watch?v=3JQ3hYko51Y/0.jpg)](https://www.youtube.com/watch?v=3JQ3hYko51Y)
 
-## MNIST Dataset
-[MNIST]( http://yann.lecun.com/exdb/mnist/) is a famous dataset that consists of handwritten digits commonly used for training various image processing systems and also used in machine learning. The dataset contains 60,000 training images and 10,000 testing images. Each image is a 28x28 pixel square (784 pixels in total). A standard split of the dataset is used to evaluate and compare models. Excellent results achieve a prediction error/loss of less than 1% and accuracy of up to 0.99%.
-
-![](https://www.tensorflow.org/images/mnist_digits.png)
 
 ## References
 [The MNIST Database](http://yann.lecun.com/exdb/mnist/)
