@@ -41,6 +41,8 @@ The main programming language used in this problem sheet is [Python](https://www
 ### Neural Networks
 In each hemisphere of our brain, humans have a primary visual cortex, also known as V1, containing 140 million neurons, with tens of billions of connections between them. And yet human vision involves not just V1, but an entire series of visual cortices - V2, V3, V4, and V5 - doing progressively more complex image processing. We carry in our heads a supercomputer, tuned by evolution over hundreds of millions of years, and superbly adapted to understand the visual world. Recognizing handwritten digits isn't easy. We humans are astoundingly good at making sense of what our eyes show us. But nearly all that work is done unconsciously. And so we don't usually appreciate how tough a problem our visual systems solve. Adapted from: http://neuralnetworksanddeeplearning.com/chap1.html
 
+![](http://neuralnetworksanddeeplearning.com/images/tikz11.png)
+
 #### Artificial Neural Networks
 *_[Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network)_* is a computational model that is inspired by the way biological neural networks in the human brain process information. Artificial Neural Networks have generated a lot of excitement in Machine Learning research and industry. The basic unit of computation in a neural network is the neuron, often called a node or unit. It receives input from some other nodes, or from an external source and computes an output. Each input has an associated weight (w), which is assigned on the basis of its relative importance to other inputs.
 
@@ -58,6 +60,8 @@ Convolutional neural networks are more complex than standard multi-layer percept
 6. Next a fully connected layer with 128 neurons and rectified linear unit activation function. 
 8. Finally, the output layer has 10 neurons for the 10 classes and a softmax activation function to output probability-like predictions for each class.
 
+## Conclusion
+Using flask, we have published a web app that displays a canvas where a user can draw a digit inside the canvas with their mouse. The canvas data is then converted into an appropiate image to pass into our loaded model which predicts the digit and returns the result to the user. I have used a convolutional neural network which is renowned as the most accurate with a low loss rate.
 
 Video: [![Neural Network 3D Simulation](https://img.youtube.com/vi/https://www.youtube.com/watch?v=3JQ3hYko51Y/0.jpg)](https://www.youtube.com/watch?v=3JQ3hYko51Y)
 
